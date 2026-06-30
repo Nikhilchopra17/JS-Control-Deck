@@ -1,0 +1,208 @@
+:root{
+    --bg: #141a22;
+    --panel: #1b232d;
+    --edge: #2c3848;
+    --amber: #e8a33d;
+    --ink: #eef1f5;
+    --ink-dim: #93a1b3;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 40px 20px;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    font-size: 12px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    border: 1px solid var(--edge);
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: var(--panel);
+    transition: color .15s, border-color .15s;
+  }
+  .back-link:hover{ color: var(--amber); border-color: var(--amber); }
+
+  h2.section-title{
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  /* ---------- Clock ---------- */
+  .clock-wrap{ display:flex; flex-direction:column; align-items:center; }
+
+  .clock {
+    width: 220px;
+    height: 220px;
+    border: 2px solid var(--edge);
+    border-radius: 50%;
+    position: relative;
+    background: var(--panel);
+  }
+
+  .clock::before{
+    content:'';
+    position:absolute; top:50%; left:50%;
+    width:8px; height:8px; border-radius:50%;
+    background: var(--amber);
+    transform: translate(-50%,-50%);
+    z-index: 5;
+  }
+
+  .clock-face{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hand{
+    width: 50%;
+    height: 2px;
+    background: var(--ink);
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: transform 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+  }
+
+  .hour-hand{ height: 3px; background: var(--ink); transform: rotate(90deg) scaleX(0.55); }
+  .min-hand{ height: 2px; transform: rotate(90deg) scaleX(0.75); }
+  .second-hand{ background: var(--amber); }
+
+  .digital-time{
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ink-dim);
+    letter-spacing: 1px;
+  }
+
+  /* ---------- Countdown Timer ---------- */
+  .timer-wrap{
+    display:flex; flex-direction:column; align-items:center;
+    width: 100%; max-width: 420px;
+  }
+
+  .timer__controls{
+    display:flex; flex-wrap:wrap; gap: 8px;
+    justify-content:center;
+    margin-bottom: 28px;
+  }
+
+  .timer__button{
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+  }
+  .timer__button:hover{ border-color: var(--amber); color: var(--amber); }
+
+  #custom{ display:flex; flex-direction: column; align-items: center; gap: 4px; }
+  #custom input{
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    padding: 9px 14px;
+    border-radius: 6px;
+    width: 140px;
+    outline: none;
+  }
+  #custom input::placeholder{ color: var(--ink-dim); }
+  #custom input:focus{ border-color: var(--amber); }
+  #custom .hint{
+    font-size: 10px;
+    color: var(--ink-dim);
+  }
+
+  .display{ text-align:center; }
+  .display__time-left{
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 2px;
+  }
+  .display__end-time{
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 8px;
+  }
+
+  /* ---------- Completion Modal ---------- */
+  .modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 13, 18, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn .2s ease;
+  }
+  .modal-overlay.active{ display: flex; }
+
+  @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+
+  .modal-box{
+    background: var(--panel);
+    border: 1px solid var(--amber);
+    border-radius: 10px;
+    padding: 36px 40px;
+    text-align: center;
+    max-width: 320px;
+    box-shadow: 0 0 40px rgba(232, 163, 61, 0.25);
+    animation: popIn .25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes popIn{
+    from{ transform: scale(0.85); opacity: 0; }
+    to{ transform: scale(1); opacity: 1; }
+  }
+
+  .modal-box h3{
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+
+  .modal-box p{
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+
+  .modal-box button{
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--bg);
+    background: var(--amber);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+  }

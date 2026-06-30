@@ -1,0 +1,98 @@
+* {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1f2937, #0b0f19 70%);
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      color: #e5e7eb;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      color: #9ca3af;
+      margin: 0;
+    }
+
+    #toggleBtn {
+      margin-top: 18px;
+      padding: 10px 24px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      background: #34d399;
+      color: #0b0f19;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    #toggleBtn:hover {
+      background: #6ee7b7;
+    }
+
+    #toggleBtn:active {
+      transform: scale(0.97);
+    }
+
+    #toggleBtn.listening {
+      background: #f87171;
+    }
+
+    #toggleBtn.listening:hover {
+      background: #fca5a5;
+    }
+
+    .words {
+      width: 100%;
+      max-width: 600px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      padding: 2rem 2.5rem;
+      line-height: 2.6rem;
+      font-size: 2rem;
+      min-height: 200px;
+    }
+
+    .words p {
+      margin: 0 0 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    .words p:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .words:empty::before {
+      content: 'Start talking and your words will show up here...';
+      color: #6b7280;
+      font-style: italic;
+    }

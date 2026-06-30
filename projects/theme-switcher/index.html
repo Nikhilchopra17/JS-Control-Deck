@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme Switcher</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="box">
+    <div class="scene" id="scene">
+  <div id="sky-dark" class="layer"></div>
+  <div id="sky-warm" class="layer"></div>
+  <div id="sky-nature" class="layer"></div>
+
+  <div id="moon"></div>
+  <div id="sun"></div>
+  <div id="flowers-layer">
+    <div class="flower-row" style="bottom:0px; opacity:0.3; font-size:22px;">
+      <span class="flower">🌸</span><span class="flower">🌼</span><span class="flower">🌷</span>
+      <span class="flower">🌻</span><span class="flower">🌺</span><span class="flower">🌸</span>
+      <span class="flower">🌼</span><span class="flower">🌷</span>
+    </div>
+    <div class="flower-row" style="bottom:15px; opacity:0.22; font-size:18px;">
+      <span class="flower">🌼</span><span class="flower">🌷</span><span class="flower">🌸</span>
+      <span class="flower">🌺</span><span class="flower">🌻</span><span class="flower">🌼</span>
+      <span class="flower">🌸</span>
+    </div>
+    <div class="flower-row" style="bottom:30px; opacity:0.15; font-size:15px;">
+      <span class="flower">🌷</span><span class="flower">🌸</span><span class="flower">🌼</span>
+      <span class="flower">🌺</span><span class="flower">🌻</span>
+    </div>
+  </div>
+  <div id="grasses"></div>
+  <div class="cloud" id="cloud1"></div>
+  <div class="cloud" id="cloud2"></div>
+
+  <div class="ui">
+    <h1 id="title">Theme Switcher</h1>
+    <button id="mainBtn" onclick="toggleOpts()">Switch Theme</button>
+    <div class="opts" id="opts">
+      <button class="tbtn" style="background:#1a2e4a;color:#c5d8f0;" onclick="applyTheme('dark')">
+        <span style="font-size:20px;">🌙</span> Dark
+      </button>
+      <button class="tbtn" style="background:#ffe082;color:#7a5000;" onclick="applyTheme('warm')">
+        <span style="font-size:20px;">☀️</span> Warm
+      </button>
+      <button class="tbtn" style="background:#a5d6a7;color:#1b4a1e;" onclick="applyTheme('nature')">
+        <span style="font-size:20px;">🌿</span> Nature
+      </button>
+    </div>
+    <p id="label">click to choose a theme</p>
+  </div>
+</div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Control Deck — Nikhil Chopra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="deck-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">JS</span>
+      <div class="brand-text">
+        <h1>Control Deck</h1>
+        <p>7 vanilla JavaScript builds, one panel — flip a switch to run one</p>
+      </div>
+    </div>
+    <a class="github-link" href="https://github.com/Nikhilchopra17" target="_blank" rel="noopener">github.com/Nikhilchopra17</a>
+  </div>
+</header>
+
+<main class="board" id="board">
+  <!-- panels injected by script.js -->
+</main>
+
+<div class="viewer" id="viewer" aria-hidden="true">
+  <div class="viewer-bar">
+    <div class="viewer-label">
+      <span class="viewer-led" id="viewerLed"></span>
+      <span id="viewerTitle">—</span>
+    </div>
+    <div class="viewer-actions">
+      <a id="viewerOpenTab" href="#" target="_blank" rel="noopener" class="viewer-btn">Open in tab ↗</a>
+      <button id="viewerClose" class="viewer-btn viewer-close">Close ✕</button>
+    </div>
+  </div>
+  <iframe id="viewerFrame" title="Project preview" loading="lazy"></iframe>
+</div>
+
+<footer class="deck-footer">
+  <p>Built with HTML, CSS &amp; vanilla JavaScript — no frameworks, no dependencies.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
