@@ -1,101 +1,109 @@
 # JS-Control-Deck
-JS Control Deck
 
-I wanted a portfolio that didn't feel like a static list of links, so I built this instead — a little "control deck" where each panel is its own JavaScript project. Click one and it powers up in a viewer, right inside the page. No frameworks, no build tools, just plain HTML/CSS/JS.
+A vanilla JavaScript portfolio that works like a small control deck: each panel launches an independent JavaScript project inside the site.
 
-Live demo: https://nikhilchopra17.github.io/JS-Control-Deck/
+**Live demo:** https://nikhilchopra17.github.io/JS-Control-Deck/
 
-What's in here
+## What's inside
 
-Each panel is a separate project living in its own folder under /projects, so they're all completely independent of each other. Clicking a panel pulls it up in a modal viewer using an iframe — that way you can play around with it without ever leaving the deck. A couple of the projects (the ones using Audio or Speech APIs) pop open in a new tab instead, since those APIs get weird and unreliable when they're stuck inside an iframe.
-
+The deck currently contains seven projects:
 
 | # | Project | What it does | Built with |
-|---|---------|---------------|------------|
-| 01 | **Snake Game** | Classic snake, rebuilt from scratch with canvas and keyboard controls. | Canvas, Game Loop, Keyboard Events |
-| 02 | **Page Timer** | A little floating widget that counts how long you've been on the page. | `setInterval`, DOM, Floating UI |
-| 03 | **Speech Synthesis** | Type something and have the browser read it back to you. | Web Speech API |
-| 04 | **Flex Panels Gallery** | An image gallery that expands smoothly using nothing but Flexbox. | Flexbox, CSS Transitions |
-| 05 | **JS Drum Kit** | Hit keys on your keyboard, hear drum sounds play instantly. | Audio API, Keyboard Events |
-| 06 | **Theme Switcher** | Toggle light/dark mode, and it remembers your choice next time. | LocalStorage, CSS Variables |
-| 07 | **GitHub Profile Finder** | Type a GitHub username, pull up their public profile info. | Fetch API, REST |
+|---|---|---|---|
+| 01 | **Snake Game** | Classic snake game with canvas rendering and keyboard controls. | Canvas, Game Loop, Keyboard Events |
+| 02 | **Page Timer** | Tracks how long you've spent on a page. | `setInterval`, DOM, Floating UI |
+| 03 | **Speech Synthesis** | Reads typed text aloud using the browser's speech API. | Web Speech API |
+| 04 | **Flex Panels Gallery** | Expanding image gallery with smooth transitions. | Flexbox, CSS Transitions |
+| 05 | **JS Drum Kit** | Plays drum sounds from keyboard input. | Audio API, Keyboard Events |
+| 06 | **Theme Switcher** | Toggles light/dark mode and remembers the preference. | LocalStorage, CSS Variables |
+| 07 | **GitHub Profile Finder** | Looks up public GitHub profile information. | Fetch API, REST |
 
-Stack
-Nothing fancy on purpose — just:
--HTML5
--CSS3 (custom properties, Flexbox, Grid, a few transitions)
--Vanilla JavaScript
+## Stack
 
-No React, no bundler, no node_modules. Open the file and it just runs.
+Nothing fancy on purpose:
 
-How it's organized
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Browser APIs
 
-js-portfolio/
-├── index.html              # the main deck page
-├── style.css                # global styles + the viewer modal
-├── script.js                 # project list + viewer logic
-├── preview.png                # screenshot for this README (optional)
+There is no framework, bundler, or `node_modules`. The projects are designed to run directly in a browser.
+
+## How it works
+
+The main `script.js` contains a project registry. Each project has an id, title, description, tags, path, and a flag indicating whether it should open in a new tab.
+
+Projects that work reliably inside an iframe are opened in the deck's viewer. Projects using Audio or Speech Synthesis APIs can open in a new tab because browser autoplay and permission policies can behave differently inside embedded frames.
+
+The viewer can be closed with the Close button, the `Escape` key, or by clicking outside the modal.
+
+## Project structure
+
+```text
+JS-Control-Deck/
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+├── .vscode/
 └── projects/
     ├── snake-game/
-    │   ├── index.html
-    │   ├── style.css
-    │   └── script.js
     ├── page-timer/
     ├── speech-synthesis/
     ├── flex-gallery/
     ├── drum-kit/
     ├── theme-switcher/
     └── github-finder/
+```
 
-How it actually works
+Each project is kept independent inside its own folder. Most projects contain their own `index.html`, `style.css`, and `script.js`, with additional assets where required.
 
-The whole thing is driven by one array in script.js — each project gets an id, a title, a description, some tags, a path to its index.html, and a flag for whether it should open in a new tab instead of the viewer. The board renders all the panels from that array on page load, so adding a new project is mostly just adding one more entry to the list (more on that below).
+## Run locally
 
-When you click a panel, it either:
--loads the project into the shared iframe and pops the viewer open, or
--opens it in a fresh tab, if it's one of the audio/speech projects.
+No installation is required.
 
+Clone the repository:
 
-You can close the viewer with the Close button, hit Escape, or just click outside the modal.
-
-Running it yourself
-No install, no setup:
-
-bashgit clone https://github.com/Nikhilchopra17/JS-Control-Deck.git
+```bash
+git clone https://github.com/Nikhilchopra17/JS-Control-Deck.git
 cd JS-Control-Deck
+```
 
-You can just open index.html directly in a browser, but for the smoothest experience I'd serve it locally instead (some browser APIs are picky about file://):
+You can open `index.html` directly in a browser. For the smoothest experience, especially with browser APIs that can be sensitive to `file://`, serve the folder locally:
 
-bash
+```bash
 python -m http.server 8000
+```
 
-then visit http://localhost:8000.
+Then open:
 
-Deployment
+```text
+http://localhost:8000
+```
 
-Hosted with GitHub Pages straight off the main branch — push to main and the live site updates a minute or two later.
+## Add a project
 
-Adding your own project to the deck
+1. Create a new folder inside `projects/`.
+2. Add the project's files, including an `index.html` entry point.
+3. Add the project to the `projects` array in the root `script.js`:
 
-1)Drop a new folder into /projects/your-project-name/ with its own index.html, style.css, and script.js.
-2)Add it to the projects array in the root script.js:
-
-
-js{
+```js
+{
   id: "your-project-id",
   title: "Your Project Title",
   desc: "A short description of what it does.",
   tags: ["Tag1", "Tag2"],
   path: "projects/your-project-name/index.html",
-  openInTabOnly: false // true if it uses Audio/Speech APIs
+  openInTabOnly: false
 }
+```
 
+Set `openInTabOnly` to `true` for projects that need to run outside the iframe, such as projects relying on Audio or Speech Synthesis APIs.
 
-3)That's it — the panel shows up on the board automatically.
+## Deployment
 
-License
+The site is hosted with GitHub Pages from the `main` branch. Pushes to `main` update the live site.
 
-Feel free to poke around and learn from the code, but please don't lift it wholesale for your own portfolio without giving credit.
-License
+## License
 
-Feel free to poke around and learn from the code, but please don't lift it wholesale for your own portfolio without giving credit.
+This repository is intended for learning and portfolio demonstration. Feel free to explore the code and learn from it, but please don't copy the entire project wholesale for your own portfolio without giving credit.
