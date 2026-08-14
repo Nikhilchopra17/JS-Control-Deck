@@ -2,6 +2,8 @@
 
 A vanilla JavaScript portfolio that works like a small control deck: each panel launches an independent JavaScript project inside the site.
 
+![JS Control Deck preview](preview.png)
+
 **Live demo:** https://nikhilchopra17.github.io/JS-Control-Deck/
 
 ## What's inside
@@ -45,6 +47,7 @@ JS-Control-Deck/
 ├── style.css
 ├── script.js
 ├── README.md
+├── preview.png
 ├── .vscode/
 └── projects/
     ├── snake-game/
